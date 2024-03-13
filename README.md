@@ -47,13 +47,18 @@ Para executar o sistema localmente, siga as instruções abaixo:
 ```bash 
   cd facilita.juridico
 ```
-4. Execute o seguinte comando:
+
+4. Copie o conteúdo de `.env.example` para um arquivo `.env`:
+```bash
+cp .env.example .env 
+```
+5. Execute o seguinte comando:
 ```bash 
   docker compose up -d
   //ou
   docker-compose up -d
 ```
-5. A aplicação estará disponível em:
+6. A aplicação estará disponível em:
 API: http://localhost:3333/
 WEB: http://localhost:5173/
 
