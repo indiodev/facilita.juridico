@@ -23,7 +23,17 @@ Além do gerenciamento básico de clientes, buscamos otimizar as rotas de atendi
   
 - **Visualização da Ordem de Visitação:** Ao clicar em um botão na tela de clientes, uma modal é aberta, exibindo a ordem de visitação dos clientes na rota calculada. Isso permite uma organização eficaz das visitas, maximizando a eficiência no atendimento.
 
-## Como Executar
+### Preview
+1. INDEX (HOME) - LISTAGEM DE CLIENTES X FILTRO X PESQUISA
+![image](https://github.com/indiodev/facilita.juridico/assets/67079657/81cecafb-1bf3-4955-bb4a-8b09606294a5)
+2. VISUALIZAR DETALHES DO CLIENTE
+![image](https://github.com/indiodev/facilita.juridico/assets/67079657/2793306c-66b7-44fe-bd57-f5d4ee84d003)
+3. ADICIONAR NOVO CLIENTE
+![image](https://github.com/indiodev/facilita.juridico/assets/67079657/aa4bbca7-949c-4dd5-9f91-b93a514b70b4)
+4. ROTA OTIMIZADA (MENOR DISTANCIA)
+![image](https://github.com/indiodev/facilita.juridico/assets/67079657/fe14e6fe-d9ac-4d89-bf9a-a180cdf17d6d)
+
+### Como Executar
 
 Para executar o sistema localmente, siga as instruções abaixo:
 
