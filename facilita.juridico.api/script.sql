@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS clients (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "name" varchar(255) NULL,
+  "email" varchar(255) NOT NULL,
+  "phone" varchar(255) NOT NULL,
+  "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NULL
+);
+
+CREATE TABLE IF NOT EXISTS locations (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "x" INTEGER NOT NULL,
+  "y" INTEGER NOT NULL,
+  "client_id" INTEGER REFERENCES clients(id) ON DELETE CASCADE,
+  "created_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "updated_at" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NULL
+);
+
+
+INSERT INTO clients (name, email, phone) VALUES (
+  'John Doe'
+  ,'Y7LJm@example.com'
+  ,'1234567890'
+);
+
+INSERT INTO locations (x, y, client_id) VALUES (
+  33
+  ,24
+  ,1
+);
+
