@@ -124,8 +124,9 @@ export function Create({ onClose }: Props) {
                   <FormControl className="w-full flex-1">
                     <Input
                       type="number"
-                      min={1}
+                      min={0}
                       max={100}
+                      maxLength={3}
                       placeholder="000"
                       {...field}
                       className="w-full flex-1"
@@ -144,9 +145,10 @@ export function Create({ onClose }: Props) {
                   <FormControl className="w-full flex-1">
                     <Input
                       type="number"
-                      min={1}
+                      min={0}
                       max={100}
-                      placeholder="000000000"
+                      maxLength={3}
+                      placeholder="000"
                       {...field}
                       className="w-full flex-1"
                     />

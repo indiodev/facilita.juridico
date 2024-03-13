@@ -12,8 +12,8 @@ export const CreateClientSchema = z.object({
   phone: z
     .string({ required_error: "Telefone é obrigatório" }),
   location: z.object({
-    x: z.coerce.number().min(1, { message: "X é obrigatório" }).max(100, { message: "X é obrigatório" }),
-    y: z.coerce.number().min(1, { message: "Y é obrigatório" }).max(100, { message: "Y é obrigatório" }),
+    x: z.coerce.number().min(0).max(100),
+    y: z.coerce.number().min(0).max(100),
   }),
 });
 

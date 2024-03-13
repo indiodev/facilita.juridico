@@ -17,6 +17,10 @@ test.group('Client use case', ({ each }) => {
       email: 'Y7LJm@example.com',
       name: 'John Doe',
       phone: '1234567890',
+      location: {
+        x: 34,
+        y: 56,
+      },
     }
     const result = await sut.create(data)
     assert.equal(result.email, data.email)
@@ -29,6 +33,10 @@ test.group('Client use case', ({ each }) => {
       email: 'Y7LJm@example.com',
       name: 'John Doe',
       phone: '1234567890',
+      location: {
+        x: 34,
+        y: 56,
+      },
     }
     await sut.create(data)
     await assert.rejects(async () => await sut.create(data), 'Client already exists')
@@ -39,21 +47,29 @@ test.group('Client use case', ({ each }) => {
       email: 'john@example.com',
       name: 'John Doe',
       phone: '1234567899',
+      location: {
+        x: 34,
+        y: 56,
+      },
     })
 
     await sut.create({
       email: 'luca@example.com',
       name: 'Luca Doe',
       phone: '1234567890',
+      location: {
+        x: 34,
+        y: 56,
+      },
     })
 
-    const getByEmail = await sut.list({ email: 'john@example.com' })
+    const getByEmail = await sut.list({ search: 'john@example.com' })
     assert.equal(getByEmail.length, 1)
 
-    const getByName = await sut.list({ name: 'Doe' })
+    const getByName = await sut.list({ search: 'Doe' })
     assert.equal(getByName.length, 2)
 
-    const getByPhone = await sut.list({ phone: '1234567890' })
+    const getByPhone = await sut.list({ search: '1234567890' })
     assert.equal(getByPhone.length, 1)
   })
 })

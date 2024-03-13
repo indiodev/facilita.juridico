@@ -11,11 +11,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useClientList } from "@/query/client";
+import { MagnifyingGlass, Path, Plus } from "@phosphor-icons/react";
 import { Dialog } from "@radix-ui/react-dialog";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 import { useRef, useState } from "react";
-import { Create } from "./form/create";
-import { View } from "./form/view";
+import { Create } from "./modal/create";
+import { Route } from "./modal/route";
+import { View } from "./modal/view";
 
 export function Home() {
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -48,13 +50,28 @@ export function Home() {
             className="bg-slate-200 text-slate-950 hover:bg-primary-foreground"
             onClick={() => setSearch(searchInputRef.current?.value)}
           >
-            Buscar
+            <MagnifyingGlass size={18} />
           </Button>
 
           <Dialog>
             <DialogTrigger asChild>
+              <Button
+                type="button"
+                className="bg-slate-200 text-slate-950 hover:bg-primary-foreground"
+                onClick={() => setSearch(searchInputRef.current?.value)}
+              >
+                <Path size={18} />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[620px] bg-foreground">
+              <Route />
+            </DialogContent>
+          </Dialog>
+
+          <Dialog>
+            <DialogTrigger asChild>
               <Button variant="outline" ref={modalButtonRef}>
-                Novo
+                <Plus size={18} />
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] bg-foreground">

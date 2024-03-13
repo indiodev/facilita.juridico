@@ -3,8 +3,8 @@ import { Infer } from '@vinejs/vine/types'
 
 export const Schema = vine.object({
   id: vine.number().positive(),
-  x: vine.string(),
-  y: vine.string().email(),
+  x: vine.number(),
+  y: vine.number(),
   created_at: vine.string(),
   updated_at: vine.string(),
 })

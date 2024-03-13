@@ -1,7 +1,7 @@
 import { ClientContract } from '#contracts/client'
 import { CreateClientDTO, QueryClientDTO } from '#dtos/client'
 import { Find } from '#dtos/find'
-import { Insert } from '#dtos/sql'
+import { Insert, Select } from '#dtos/sql'
 import { Client } from '#entities/client'
 import { Location } from '#entities/location'
 import { inject } from '@adonisjs/core'
@@ -32,35 +32,60 @@ export default class ClientRepository implements ClientContract {
     ...params
   }: Find<Omit<Client, 'created_at' | 'updated_at'>>): Promise<Client | null> {
     const keys = Object.keys(params)
+
     if (keys.length === 0) return null
 
     if (keys.length === 1) {
       const [key] = keys
-      const client = await db.rawQuery(`SELECT * FROM clients WHERE ${key} = :${key}`, params)
-      if (client.rowCount === 0) return null
-      return client.rows[0]
+      const {
+        rows: [client],
+        rowCount,
+      } = await db.rawQuery<Select<Client & { x?: number; y?: number }>>(
+        `SELECT c.*, l.* FROM clients c LEFT JOIN locations l ON c.id = l.client_id WHERE c.${key} = :${key}`,
+        params
+      )
+      if (rowCount === 0 || !client) return null
+
+      return { ...client, location: { x: client.x, y: client.y } as Location }
     }
 
     const rawKeys = Object.keys(params)
-      .flatMap((key) => [`${key} = :${key}`])
+      .flatMap((key) => [`c.${key} = :${key}`])
       .join(` ${op} `)
 
-    const client = await db.rawQuery(`SELECT * FROM clients WHERE ${rawKeys}`, params)
-    if (client.rowCount === 0) return null
-    return client.rows[0]
-  }
-
-  async list({ search }: Partial<QueryClientDTO>): Promise<Client[]> {
-    if (!search) {
-      const clients = await db.rawQuery(`SELECT * FROM clients`)
-      return clients.rows
-    }
-
-    const clients = await db.rawQuery(
-      `SELECT * FROM clients WHERE name ILIKE '%' || :search || '%' or email ILIKE '%' || :search || '%' or phone ILIKE '%' || :search || '%'`,
-      { search }
+    const {
+      rowCount,
+      rows: [client],
+    } = await db.rawQuery<Select<Client & { x?: number; y?: number }>>(
+      `SELECT c.*, l.* FROM clients c LEFT JOIN locations l ON c.id = l.client_id WHERE ${rawKeys}`,
+      params
     )
 
-    return clients.rows
+    if (rowCount === 0 || !client) return null
+
+    return { ...client, location: { x: client.x, y: client.y } as Location }
+  }
+
+  async list(params?: Partial<QueryClientDTO>): Promise<Client[]> {
+    if (!params?.search) {
+      const { rows: clients } = await db.rawQuery<Select<Client & { x?: number; y?: number }>>(
+        `SELECT c.*, l.* FROM clients c LEFT JOIN locations l ON c.id = l.client_id`
+      )
+
+      return clients.map((client) => ({
+        ...client,
+        location: { x: client.x, y: client.y } as Location,
+      }))
+    }
+
+    const { rows: clients } = await db.rawQuery<Select<Client & { x?: number; y?: number }>>(
+      `SELECT c.*, l.* FROM clients c LEFT JOIN locations l ON c.id = l.client_id WHERE c.name ILIKE '%' || :search || '%' or c.email ILIKE '%' || :search || '%' or c.phone ILIKE '%' || :search || '%'`,
+      { search: params.search }
+    )
+
+    return clients.map((client) => ({
+      ...client,
+      location: { x: client.x, y: client.y } as Location,
+    }))
   }
 }

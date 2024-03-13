@@ -1,3 +1,5 @@
+import { Location } from "./location";
+
 export interface Client{
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export interface Client{
   phone: string;
   created_at: string;
   updated_at: string;
+  location?: Location
 }

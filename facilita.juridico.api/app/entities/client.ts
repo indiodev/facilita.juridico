@@ -8,7 +8,7 @@ export const Schema = vine.object({
   name: vine.string(),
   email: vine.string().email(),
   phone: vine.string(),
-  location: Location.optional(),
+  location: Location,
   created_at: vine.string(),
   updated_at: vine.string(),
 })

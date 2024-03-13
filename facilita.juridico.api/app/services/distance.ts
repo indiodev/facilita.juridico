@@ -1,4 +1,4 @@
-interface Point {
+export interface Point {
   x: number
   y: number
   identifier?: string
@@ -15,7 +15,7 @@ type Route = Record<number, Point>
 export class Distance {
   private points: Route = {}
 
-  constructor(private point: Point = { identifier: 'Empresa', x: 0, y: 0 }) {
+  constructor(private point: Point = { identifier: 'Empresa (0, 0)', x: 0, y: 0 }) {
     this.push(this.point)
   }
 

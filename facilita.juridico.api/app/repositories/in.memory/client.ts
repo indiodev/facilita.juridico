@@ -13,6 +13,13 @@ export default class ClientRepositoryInMemory implements ClientContract {
       id: this.size() + 1,
       created_at: DateTime.now().toSQL(),
       updated_at: DateTime.now().toSQL(),
+      location: {
+        x: data.location.x,
+        y: data.location.y,
+        id: this.size() + 1,
+        created_at: DateTime.now().toSQL(),
+        updated_at: DateTime.now().toSQL(),
+      },
     }
 
     this.items[created.id!] = created
@@ -23,7 +30,9 @@ export default class ClientRepositoryInMemory implements ClientContract {
   async findBy(params: Find<QueryClientDTO>): Promise<Client | null> {
     const clients = Object.entries(this.items).flatMap(([_, client]) => client)
     const excluded = (client: Client) =>
-      client.email === params.email || client.phone === params.phone || client.name === params.name
+      client.email === params.search ||
+      client.phone === params.search ||
+      client.name === params.search
 
     const client = clients.find(excluded)
 
@@ -35,9 +44,9 @@ export default class ClientRepositoryInMemory implements ClientContract {
     const clients = Object.values(this.items) || []
     return clients.filter((client) => {
       return (
-        (params.email && client.email.includes(params.email)) ||
-        (params.phone && client.phone.includes(params.phone)) ||
-        (params.name && client.name.includes(params.name))
+        (params.search && client.email.includes(params.search)) ||
+        (params.search && client.phone.includes(params.search)) ||
+        (params.search && client.name.includes(params.search))
       )
     })
   }
