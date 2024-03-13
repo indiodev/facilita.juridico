@@ -27,11 +27,7 @@ VALUES
     ('Cliente 3', 'cliente3@example.com', '1234567892'),
     ('Cliente 4', 'cliente4@example.com', '1234567893'),
     ('Cliente 5', 'cliente5@example.com', '1234567894'),
-    ('Cliente 6', 'cliente6@example.com', '1234567895'),
-    ('Cliente 7', 'cliente7@example.com', '1234567896'),
-    ('Cliente 8', 'cliente8@example.com', '1234567897'),
-    ('Cliente 9', 'cliente9@example.com', '1234567898'),
-    ('Cliente 10', 'cliente10@example.com', '1234567899');
+    ('Cliente 6', 'cliente6@example.com', '1234567895');
 
 -- Inserir posições aleatórias para cada cliente
 INSERT INTO locations (x, y, client_id)
