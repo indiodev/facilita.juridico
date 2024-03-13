@@ -1,11 +1,5 @@
 # Sistema de Gerenciamento de Clientes (facilita.juridico)
-
-<video width="640" height="360" controls>
-  <source src="[https://youtu.be/mMAYszSkAfs](https://youtu.be/mMAYszSkAfs)" type="video/mp4">
-  Seu navegador não suporta o elemento de vídeo.
-</video>
-
-
+![veja aqui o video]([https://github.com/indiodev/facilita.juridico/assets/67079657/81cecafb-1bf3-4955-bb4a-8b09606294a5](https://youtu.be/mMAYszSkAfs))
 
 Esta é uma solução para o desafio proposto pela Facilita Jurídico: o desenvolvimento de um sistema de gerenciamento de clientes para uma empresa de limpeza residencial.
 
