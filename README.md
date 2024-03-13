@@ -48,11 +48,13 @@ Para executar o sistema localmente, siga as instruções abaixo:
   cd facilita.juridico
 ```
 
-4. Copie o conteúdo de `.env.example` para um arquivo `.env`:
+4. Configurar as variáveis de ambiente 
 ```bash
-cp .env.example .env 
+cp ./facilita.juridico.api/.env.example .env
+cp ./facilita.juridico.api/.env.example ./facilita.juridico.api/.env
+cp ./facilita.juridico.web/.env.example ./facilita.juridico.web/.env
 ```
-5. Execute o seguinte comando:
+5. Subir os containers da aplicação:
 ```bash 
   docker compose up -d
   //ou
