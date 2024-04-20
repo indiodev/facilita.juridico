@@ -1,7 +1,5 @@
 # Sistema de Gerenciamento de Clientes (facilita.juridico)
 
-<a href="https://youtu.be/mMAYszSkAfs" target="_blank">veja aqui o vídeo de apresentação</a>
-
 Esta é uma solução para o desafio proposto pela Facilita Jurídico: o desenvolvimento de um sistema de gerenciamento de clientes para uma empresa de limpeza residencial.
 
 ## Sobre o sistema
